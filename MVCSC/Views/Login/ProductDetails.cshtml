@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MVCSC.Product>
+@{
+    ViewBag.Title = "Product Details";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product Details</title>
+</head>
+<body>
+    <h4>Product</h4>
+    <hr />
+    @Html.ActionLink("View Cart", "ViewCart")
+
+    <table class="table">
+
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_COUNT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_DESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_PRICE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_REVIEW)
+            </th>
+
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_COUNT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_DESCRIPTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_PRICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_REVIEW)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Add To Cart", "AddToCart", new { productid = Convert.ToInt32(item.PRODUCT_ID) })
+
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+   
+
+</body>
+</html>
+

@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShoppingCart1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="CART_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRODUCT_COUNT" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_TOTALPRICE" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CART_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Category">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FIRSTMODIFIED" Type="datetime" />
+          <Property Name="LASTMODIFIED" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PRODUCT_REVIEW" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PRODUCT_COUNT" Type="int" Nullable="false" />
+          <Property Name="FIRSTMODIFIED" Type="datetime" />
+          <Property Name="LASTMODIFIED" Type="datetime" />
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCTS_SOLD" Type="int" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserDetailId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cart_PrdId">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="Carts">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_CatgId">
+          <End Role="Product_Category" Type="Self.Product_Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShoppingCart1ModelStoreContainer">
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Category" EntityType="Self.Product_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cart_PrdId" Association="Self.FK_Cart_PrdId">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Carts" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_CatgId" Association="Self.FK_Products_CatgId">
+            <End Role="Product_Category" EntitySet="Product_Category" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShoppingCart1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShoppingCart1Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carts" EntityType="ShoppingCart1Model.Cart" />
+          <EntitySet Name="Product_Category" EntityType="ShoppingCart1Model.Product_Category" />
+          <EntitySet Name="Products" EntityType="ShoppingCart1Model.Product" />
+          <EntitySet Name="UserDetails" EntityType="ShoppingCart1Model.UserDetail" />
+          <AssociationSet Name="FK_Cart_PrdId" Association="ShoppingCart1Model.FK_Cart_PrdId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_CatgId" Association="ShoppingCart1Model.FK_Products_CatgId">
+            <End Role="Product_Category" EntitySet="Product_Category" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CART_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_COUNT" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_TOTALPRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CART_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Product" Relationship="ShoppingCart1Model.FK_Cart_PrdId" FromRole="Cart" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product_Category">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTMODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="LASTMODIFIED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="ShoppingCart1Model.FK_Products_CatgId" FromRole="Product_Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PRODUCT_REVIEW" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_COUNT" Type="Int32" Nullable="false" />
+          <Property Name="FIRSTMODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="LASTMODIFIED" Type="DateTime" Precision="3" />
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCTS_SOLD" Type="Int32" />
+          <NavigationProperty Name="Carts" Relationship="ShoppingCart1Model.FK_Cart_PrdId" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Product_Category" Relationship="ShoppingCart1Model.FK_Products_CatgId" FromRole="Product" ToRole="Product_Category" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Cart_PrdId">
+          <End Type="ShoppingCart1Model.Product" Role="Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShoppingCart1Model.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_CatgId">
+          <End Type="ShoppingCart1Model.Product_Category" Role="Product_Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShoppingCart1Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShoppingCart1ModelStoreContainer" CdmEntityContainer="ShoppingCart1Entities1">
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="ShoppingCart1Model.Cart">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="CART_ID" ColumnName="CART_ID" />
+                <ScalarProperty Name="PRODUCT_TOTALPRICE" ColumnName="PRODUCT_TOTALPRICE" />
+                <ScalarProperty Name="PRODUCT_COUNT" ColumnName="PRODUCT_COUNT" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Category">
+            <EntityTypeMapping TypeName="ShoppingCart1Model.Product_Category">
+              <MappingFragment StoreEntitySet="Product_Category">
+                <ScalarProperty Name="LASTMODIFIED" ColumnName="LASTMODIFIED" />
+                <ScalarProperty Name="FIRSTMODIFIED" ColumnName="FIRSTMODIFIED" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShoppingCart1Model.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="PRODUCTS_SOLD" ColumnName="PRODUCTS_SOLD" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="LASTMODIFIED" ColumnName="LASTMODIFIED" />
+                <ScalarProperty Name="FIRSTMODIFIED" ColumnName="FIRSTMODIFIED" />
+                <ScalarProperty Name="PRODUCT_COUNT" ColumnName="PRODUCT_COUNT" />
+                <ScalarProperty Name="PRODUCT_REVIEW" ColumnName="PRODUCT_REVIEW" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="ShoppingCart1Model.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

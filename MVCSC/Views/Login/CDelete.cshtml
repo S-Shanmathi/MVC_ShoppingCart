@@ -1,0 +1,123 @@
+﻿@*@model MVC_ShoppingCart.Models.Cart
+
+    @{
+        ViewBag.Title = "CDelete";
+    }
+
+    <h2>CDelete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Cart</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUCT_ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRODUCT_ID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRODUCT_NAME)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUCT_COUNT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRODUCT_COUNT)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUCT_TOTALPRICE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PRODUCT_TOTALPRICE)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>*@
+
+@model MVCSC.Cart
+
+@{
+    ViewBag.Title = "CDelete";
+}
+
+<h2>Delete Crat Item</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cart</h4>
+    <hr />
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+            @using (Html.BeginForm("CDelete", "Login", FormMethod.Post))
+            {
+                //@Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Register</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CART_ID)
+                            @Html.TextBoxFor(m => m.CART_ID, "", new { @class = "form-control", @placeholder = "CART_ID",@readonly="readonly"})
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PRODUCT_NAME)
+                            @Html.TextBoxFor(m => m.PRODUCT_NAME, "", new { @class = "form-control", @placeholder = "PRODUCT NAME", @readonly = "readonly" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PRODUCT_COUNT)
+                            @Html.TextBoxFor(m => m.PRODUCT_COUNT, "", new { @class = "form-control", @placeholder = "PRODUCT COUNT", @readonly = "readonly" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PRODUCT_TOTALPRICE)
+                            @Html.TextBoxFor(m => m.PRODUCT_TOTALPRICE, new { @class = "form-control", @placeholder = "PRODUCT TOTALPRICE", @readonly = "readonly" })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn-default" value="Delete" />
+                            @Html.ActionLink("Back to List", "Index")
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+    @*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }*@
+    </div>

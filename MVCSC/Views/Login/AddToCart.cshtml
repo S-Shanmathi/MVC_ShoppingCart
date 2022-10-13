@@ -1,0 +1,136 @@
+﻿@model IEnumerable<MVCSC.Cart>
+@{
+    ViewBag.Title = "AddToCart";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add to Cart</title>
+</head>
+<body>
+    <h4></h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.PRODUCT_DESCRIPTION)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_COUNT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_TOTALPRICE)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.PRODUCT_COUNT)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.FIRSTMODIFIED)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LASTMODIFIED)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CATEGORY_NAME)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.PRODUCTS_SOLD)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Product_Category.CATEGORY_NAME)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_NAME)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.PRODUCT_DESCRIPTION)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_COUNT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT_TOTALPRICE)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.PRODUCT_COUNT)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FIRSTMODIFIED)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LASTMODIFIED)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CATEGORY_NAME)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.PRODUCTS_SOLD)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Product_Category.CATEGORY_NAME)
+                    </td>*@
+                @*<td>
+                        @Html.ActionLink("Add To Cart", "Add", new { id = item.PRODUCT_ID })
+
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Delete", "CDelete", new { cartid = Convert.ToInt32(item.CART_ID) })|
+                    @Html.ActionLink("Edit", "CEdit", new { cartid = Convert.ToInt32(item.CART_ID) })
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @*<table cellpadding="0" cellspacing="0" align="center">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Price</th>
+                <th>Product Review</th>
+                <th>Product Sold</th>
+                <th>Category Id</th>
+
+            </tr>
+            @foreach (Product product in Model)
+            {
+                <tr>
+                    <td>@product.PRODUCT_NAME</td>
+                    <td>@product.PRODUCT_DESCRIPTION</td>
+                    <td>@product.PRODUCT_PRICE</td>
+                    <td>@product.PRODUCT_REVIEW</td>
+                    <td>@product.PRODUCTS_SOLD</td>
+                    <td>@product.CATEGORY_ID</td>
+
+
+                    <td align="right" colspan="500">
+
+                        @Html.ActionLink("Add", "Add To Cart", "Login", new { id = product.PRODUCT_ID })
+
+                    </td>
+
+                </tr>
+
+
+            }
+
+        </table>*@
+    @Html.ActionLink("Pay", "Payment")
+</body>
+</html>
+

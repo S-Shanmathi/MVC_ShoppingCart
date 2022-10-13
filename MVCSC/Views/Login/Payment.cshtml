@@ -1,0 +1,106 @@
+﻿@model MVC_ShoppingCart.Models.Cart
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<!--<h2>Payment</h2>
+
+<div>
+    <h4>Cart Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_COUNT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_COUNT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_TOTALPRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_TOTALPRICE)
+        </dd>
+    </dl>
+    <p>@ViewBag.message</p>
+
+</div>
+<p>-->
+    @* @Html.ActionLink("Edit", "Edit", new { id = Model.CART_ID }) |*@
+    <!--@Html.ActionLink("Back to List", "Index")
+</p>-->
+
+
+
+<h2>Payment</h2>
+<p>
+    <b>@ViewBag.answer</b>
+</p>
+
+<div>
+
+    <hr />
+    @*<dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_TOTALPRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_TOTALPRICE)
+        </dd>
+
+
+    </dl>*@
+</div>
+<h3> Choose your Payment Mode</h3>
+@*<ul>
+    <li> Cash on delivery </li>
+    <li> Debit card </li>
+    <li> UPI </li>
+</ul>*@
+<div class="form-group">
+    @*@Html.LabelFor(model => model.PRODUCT_TOTALPRICE, htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10" align="left">
+        <ul>
+
+            <li>@Html.RadioButtonFor(model => model.PRODUCT_TOTALPRICE, "Debit Card") Debit card</li>
+
+            <li>@Html.RadioButtonFor(model => model.PRODUCT_TOTALPRICE, "UPI") UPI</li>
+
+            <li>@Html.RadioButtonFor(model => model.PRODUCT_TOTALPRICE, "COD") Cash on Delivery</li>
+        </ul>
+    </div>
+</div>
+<button type="button" class="btn btn-primary" onclick="Payment()">Pay</button>
+<script>
+function Payment()
+{
+   
+    location.href='@Url.Action("Stockminus", "Login")'
+    alert("Order is Placed")
+    Cart.clear();
+     }</script>
+<p>
+    @Html.ActionLink("Back to List", "ProductDetails")
+</p>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MVCSC.Models.productdisplay>
+@{
+    ViewBag.Title = "Product";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product Details</title>
+</head>
+<body>
+    <h4>Product</h4>
+    <hr />
+    @Html.ActionLink("Add", "Add") | 
+    @Html.ActionLink("Add Product Category", "ProductCategory")
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pc.CATEGORY_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd.PRODUCT_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd.PRODUCT_COUNT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd.PRODUCT_DESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd.PRODUCT_PRICE)
+            </th>
+          
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pc.CATEGORY_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pd.PRODUCT_NAME)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.pd.PRODUCT_COUNT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pd.PRODUCT_DESCRIPTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pd.PRODUCT_PRICE)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { productid = Convert.ToInt32(item.pd.PRODUCT_ID) }) |
+                @Html.ActionLink("Delete", "Delete", new { productid = Convert.ToInt32(item.pd.PRODUCT_ID) }) |
+
+
+            </td>
+        </tr>
+        }
+
+    </table>
+
+</body>
+</html>
+

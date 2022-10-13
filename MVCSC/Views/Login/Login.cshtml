@@ -1,0 +1,92 @@
+﻿
+@model MVCSC.UserDetail
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+
+    @*<body style="background-color: papayawhip;">*@
+
+    <body background="~/Image/Login_pic.jpg" style="background-size:100%;">
+        @*  <img src="~/Image/login_illustartion.jpg" style="border-radius:350px 350px 150px 150px" />
+        *@
+        <container>
+            <div class="row">
+                <div class="col-md-5">
+                    <h2>Login</h2>
+
+                    <table align="center" style="width:100%">
+                        <tr>
+                            <td colspan="2" align="center"></td>
+
+
+                            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(a => a.UserId)
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(a => a.UserId, "", new { @class = "form-control", @placeholder = "User Id" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(a => a.Password)
+                                </td>
+
+                                <td>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                </td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+                                    <p id="error"><b>@ViewBag.error</b></p>
+                                </td>
+                            </tr>
+                        }
+                            @Html.ActionLink("New User? Register here", "Register")
+                        </table>
+                    </div>
+                    <div class="col-md-5">
+
+                        <img id="logo" src="~/Image/SC.png" alt="logo" style="width:150px; height:150px; margin-left: 75%;border-radius:50%">
+                    </div>
+                </div>
+            </container>
+        </body>
+        <style>
+            #error {
+                color: darkslateblue;
+                font-family: Chiller;
+                font-size: 300%;
+            }
+
+            #logo {
+                
+
+            
+                width: 200px;
+                height: 250px;
+                margin-left: 550px;
+                border-radius: 10%;
+            }
+
+            #logo:hover {
+                color: #111;
+                background: greenyellow;
+                box-shadow: 0 0 100px greenyellow;
+            
+
+        }
+        </style>
+    }

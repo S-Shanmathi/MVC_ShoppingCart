@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+
+
+@using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post))
+{
+    <body>
+          @*background="~/Image/Login_pic.jpg" style="background-size:100%;">*@
+        <img src="~/Image/login_illustartion.jpg" style="border-radius:50%;"/>
+
+        <table align="right">
+            <tr>
+                <td colspan="2" align="center">
+
+                    Admin Login
+
+                </td>
+            </tr>
+            @using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <tr>
+                    <td>
+                        <label for="uname"><b>UserName</b></label>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="psw"><b>Password</b></label>
+                    </td>
+                    <td>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="submit" class="btn btn-primary" value="AdminLogin" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </body>
+}
+
+
