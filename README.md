@@ -1,5 +1,3 @@
-ASSESSMENT
-
 NAME    : 		Shanmathi S
 PROJECT : 	  MVC SHOPPING CART
 TITLE   : 		SHOP CART
