@@ -26,6 +26,7 @@ Abstract:
  
 3.	Controller: The controller handles the user request. Typically, the user uses the view and raises an HTTP request, which will be handled by the controller. The controller processes the request and returns the appropriate
 
+_________________________________________________________________________________________________________________________________
 
 
 
@@ -36,6 +37,7 @@ CUSTOMER:
 Can view the product stock
 Perform all tasks like add, delete, and update the products in their cart. 
 Make a purchase through online mode.
+_________________________________________________________________________________________________________________________________
 
 MODULES 
 // LOGIN MODULE 
@@ -46,11 +48,13 @@ MODULES
 Admin 
 Admin Driver           : Add, update, delete products in the stock. 
 Admin Page_Re-director : Admin Menu and information passing to another stage. 
+_________________________________________________________________________________________________________________________________
 
 Customer
  Customer Driver           : Register account and view the products in stock Add, update, delete and view the products in their cart, also can make payment
  Customer Page_Re-director : User Menu and information passing to another stage. 
- 
+ _________________________________________________________________________________________________________________________________
+
 // USER LEVEL 
 ADMIN: 
 The topmost authority. 
@@ -61,6 +65,7 @@ CUSTOMERS:
 Secondary level authority. 
 Register and create an account. 
 Already existing user can check for the previous order details.
+_________________________________________________________________________________________________________________________________
 
 // PRODUCT MODULE
 ****************************** USERS************************************* 
@@ -70,7 +75,8 @@ If admin is authenticated with their credentials, all the functionalities regard
 CUSTOMER: 
 If customer is authenticated with their credentials, only the stock products be viewed. 
 
-****************************FUNCTIONALITIES*************************** 
+****************************FUNCTIONALITIES***************************
+
 (i)	Add 
 A new product will be added in the stock with all the required details.
 (ii)	Update
@@ -79,14 +85,17 @@ A new product will be added in the stock with all the required details.
  In case if a product needs to be deleted from the stock, it can be done through this functionality.
 (iv)	Display
  An entire product will be displayed in the page for reference.
+_________________________________________________________________________________________________________________________________
 
 // CART MODULE
 
  ****************************** USERS************************************* 
+ 
 CUSTOMER: 
 If customer is authenticated with their credentials, all the functionalities regarding this module can be performed.
 
  ****************************FUNCTIONALITIES*************************** 
+ 
 If user is authenticated with their credentials, the below functionalities will be performed. 
 (i)Add 
 A new product will be added in the cart with all the required details. 
@@ -102,6 +111,7 @@ An entire stock product will be displayed in the page for reference.
 
 (vi)	View cart 
 The product which is stored in their cart gets displayed.
+_________________________________________________________________________________________________________________________________
 
 // PAYMENT MODULE 
 The user needs to purchase their orders by making payment through online for that purpose a separate module is maintained. 
@@ -110,12 +120,18 @@ Different options are provided for making payment like
 • Debit card 
 • COD 
 Based upon the user’s choice the validations and verifications take place and the customer order will be confirmed.
+_________________________________________________________________________________________________________________________________
 
 4.LOGIN DETAILS 
 ****************************** USERS************************************* 
+
 ADMIN:
  USERNAME: admin 
 PASSWORD: admin 
 CUSTOMER 1: 
 USERNAME : abc
 PASSWORD : abc@123 
+
+_________________________________________________________________________________________________________________________________
+
+
